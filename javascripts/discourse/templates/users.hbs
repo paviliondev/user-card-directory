@@ -1,0 +1,28 @@
+{{#d-section pageClass="users"}}
+  {{#load-more selector=".directory tbody tr" action=(action "loadMore")}}
+    <div class="container">
+      <div class='directory'>
+        {{plugin-outlet name="users-top" connectorTagName='div' args=(hash model=model)}}
+        <div class='clearfix'>
+          {{period-chooser period=period}}
+          {{text-field value=nameInput placeholderKey="directory.filter_name" class="filter-name no-blur"}}
+        </div>
+
+        {{#conditional-loading-spinner condition=model.loading}}
+          {{#if model.length}}
+          
+            {{#each model as |item|}}
+              {{directory-user-card item=item}}
+            {{/each}}
+
+            {{conditional-loading-spinner condition=model.loadingMore}}
+          {{else}}
+            <div class='clearfix'></div>
+            <p>{{i18n "directory.no_results"}}</p>
+          {{/if}}
+        {{/conditional-loading-spinner}}
+
+      </div>
+    </div>
+  {{/load-more}}
+{{/d-section}}

@@ -1,0 +1,30 @@
+@import "common/components/user-card"; 
+
+.directory .loading-container {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+}
+
+.directory-user-card {
+  width: 48%;
+  margin-top: 50px;
+  
+  &> div {
+    @extend #user-card;
+    width: 100%;
+    box-shadow: none;
+    border: 1px solid $primary;
+    border-radius: 4px;
+    
+    .card-content {
+      border-radius: 4px;
+      height: 200px;
+      
+      .metadata {
+        font-size: 14px !important;
+        white-space: nowrap;
+      }
+    }
+  }
+}
